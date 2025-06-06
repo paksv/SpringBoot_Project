@@ -1,0 +1,29 @@
+--- zoho_crm/src/main/java/com/example/zoho_crm/services/LeadServiceImpl.java	(revision Before)
++++ zoho_crm/src/main/java/com/example/zoho_crm/services/LeadServiceImpl.java	(revision After)
+@@ -15,11 +15,11 @@
+ 	private LeadRepository leadRepo;
+ 	@Override
+ 	public void saveLeadService(Lead lead) {
+-		
++
+ 		leadRepo.save(lead);
+ 	}
+ 	@Override
+-	public List<Lead> listAllData(Lead lead) {
++	public List<Lead> listAllData() {
+ 		List<Lead> leads = leadRepo.findAll();
+ 		return leads;
+ 	}
+@@ -28,10 +28,10 @@
+ 		leadRepo.deleteById(id);
+ 	}
+ 	@Override
+-	public Lead updateOneLead(long id) {
++	public Lead getLeadById(long id) {
+ 		Optional<Lead> findById = leadRepo.findById(id);
+ 		Lead lead = findById.get();
+ 		return lead;
+-	}	
++	}
+ 
+ }
