@@ -1,0 +1,76 @@
+--- zoho_crm/src/main/java/com/example/zoho_crm/controller/LeadController.java	(revision Before)
++++ zoho_crm/src/main/java/com/example/zoho_crm/controller/LeadController.java	(revision After)
+@@ -21,19 +21,19 @@
+ 
+ @Controller
+ public class LeadController {
+-	
++
+ 	@Autowired
+ 	private ZohoEmail zohoEmail;
+-	
++
+ 	@Autowired
+ 	private LeadService leadServ;
+-	
++
+ 	// http://localhost:8080/view
+ 	@RequestMapping("/view")
+ 	public String view() {
+ 		return "view";
+ 	}
+-	
++
+ 	//action = savelead like servlet
+ 	@RequestMapping("/savelead")
+ 	public String savelead(Lead lead) {
+@@ -41,23 +41,23 @@
+ 		zohoEmail.zohoEmailSend(lead.getEmail(), "Welcome", "Thank you for car bokking");
+ 		return "view";
+ 	}
+-	
++
+ 	//http:localhost:8080/listall
+ 	@RequestMapping("/listall")
+-	public String listall(Lead lead,Model model) {
+-		List<Lead> leads = leadServ.listAllData(lead);
++	public String listall(Model model) {
++		List<Lead> leads = leadServ.listAllData();
+ 		model.addAttribute("leads",leads);
+ 		return "listAll";
+ 	}
+ 	//deletelead
+ 	@RequestMapping("/deletelead")
+-	public String deletelead(@RequestParam("id") long id,Model model,Lead lead) {
++	public String deletelead(@RequestParam("id") long id,Model model) {
+ 		leadServ.deleteOneLead(id);
+-		List<Lead> leads = leadServ.listAllData(lead);
++		List<Lead> leads = leadServ.listAllData();
+ 		model.addAttribute("leads",leads);
+ 		return "listAll";
+ 	}
+-	
++
+ 	//updatelead
+ 	@RequestMapping("/updatelead")
+ 	public String updatelead(@RequestParam("id") long id,ModelMap model) {
+@@ -65,16 +65,13 @@
+ 			model.addAttribute("lead", lead);
+ 			return "lead_update";
+ 	}
+-	
++
+ 	@RequestMapping("/updateonelead")
+ 	public String updateonelead(Lead lead,Model model){
+ 		leadServ.saveLeadService(lead);
+-			
+-		List<Lead> leads = leadServ.listAllData(lead);
++
++		List<Lead> leads = leadServ.listAllData();
+ 		model.addAttribute("leads",leads);
+ 		return "listAll";
+ 	}
+ }
+-
+-
+-

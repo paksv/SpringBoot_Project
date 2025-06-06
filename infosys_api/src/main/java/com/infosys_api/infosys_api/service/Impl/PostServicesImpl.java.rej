@@ -1,0 +1,21 @@
+--- infosys_api/src/main/java/com/infosys_api/infosys_api/service/Impl/PostServicesImpl.java	(revision Before)
++++ infosys_api/src/main/java/com/infosys_api/infosys_api/service/Impl/PostServicesImpl.java	(revision After)
+@@ -8,15 +8,16 @@
+ import org.springframework.stereotype.Service;
+ 
+ @Service
+-public class PostServicesImpl implements PostService {
++public class PostServiceImpl implements PostService {
+     private PostRepository postRepository;
+ 
+-    public PostServicesImpl(PostRepository postRepository) {
++    public PostServiceImpl(PostRepository postRepository) {
+         this.postRepository = postRepository;
+     }
+ 
+     PostDto mapToDto(Post post){
+         PostDto dto = new PostDto();
++        dto.setId(post.getId());
+         dto.setTitle(post.getTitle());
+         dto.setDescription(post.getDescription());
+         dto.setContent(post.getContent());

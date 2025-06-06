@@ -1,0 +1,15 @@
+--- zoho_crm/src/main/java/com/example/zoho_crm/services/LeadService.java	(revision Before)
++++ zoho_crm/src/main/java/com/example/zoho_crm/services/LeadService.java	(revision After)
+@@ -7,10 +7,8 @@
+ 
+ public interface LeadService {
+ 	public void saveLeadService(Lead lead);
+-	public List<Lead> listAllData(Lead lead);
++	public List<Lead> listAllData();
+ 	public void deleteOneLead(long id);
+-	public Lead updateOneLead(long id);
++	public Lead getLeadById(long id);
+ 
+ }
+-
+-
